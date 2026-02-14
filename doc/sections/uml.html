@@ -1,0 +1,13 @@
+<section id="uml">
+  <h2>UML Class Diagram</h2>
+  <div class="uml">
+    TabularReader &lt;|-- CsvReader<br>
+    TabularReader &lt;|-- JsonReader<br>
+    App --&gt; TabularReader<br>
+    App --&gt; WeatherLogic<br>
+    App --&gt; CountryLogic<br>
+    App --&gt; ConsoleLogger, ProgressBar<br>
+    WeatherLogic, CountryLogic --&gt; NumberParsing<br>
+  </div>
+  <p><i>App</i> orchestrates reading, computation, and output. Readers are pluggable. Logic is stateless and reusable.</p>
+</section>

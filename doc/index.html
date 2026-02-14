@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution Documentation</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f6f8fa; color: #222; margin: 0; padding: 0; }
+    .container { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px #e0e0e0; padding: 2.5em 2em 2em 2em; }
+    h1 { color: #1a237e; font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { color: #1565c0; border-bottom: 1px solid #e3e3e3; padding-bottom: 0.2em; margin-top: 2em; }
+    h3 { color: #1976d2; margin-top: 1.5em; }
+    nav { margin-bottom: 2em; }
+    nav a { margin-right: 1.5em; color: #1976d2; text-decoration: none; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    pre, code { background: #f4f4f4; border-radius: 4px; padding: 2px 6px; font-size: 1em; }
+    pre { padding: 1em; overflow-x: auto; }
+    ul, ol { margin-left: 1.5em; }
+    .uml { background: #f9f9ff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1em; margin: 1em 0; font-family: 'Consolas', monospace; font-size: 1em; }
+    .footer { color: #888; font-size: 0.95em; margin-top: 2em; text-align: center; }
+    .badge { display: inline-block; background: #1976d2; color: #fff; border-radius: 4px; padding: 0.2em 0.7em; font-size: 0.95em; margin-left: 0.5em; }
+    .highlight { background: #fffde7; border-left: 4px solid #ffd600; padding: 0.5em 1em; margin: 1em 0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Solution Documentation</h1>
+  <nav>
+    <a href="#challenge" data-section="challenge">Challenge</a>
+    <a href="#solution" data-section="solution">Solution</a>
+    <a href="#run" data-section="run">How to Run</a>
+    <a href="#structure" data-section="structure">Project Structure</a>
+    <a href="#uml" data-section="uml">UML</a>
+    <a href="#detailed" data-section="detailed">Detailed</a>
+    <a href="#test" data-section="test">Testing</a>
+    <a href="#report" data-section="report">Test Reports</a>
+  </nav>
+
+  <main id="content" aria-live="polite"></main>
+
+  <script>
+    // Load section fragments from ./sections/*.html and append to #content
+    (async function(){
+      const sections = ['challenge','solution','run','structure','uml','detailed','test','report','footer'];
+      const container = document.getElementById('content');
+      for (const s of sections) {
+        try {
+          const resp = await fetch(`sections/${s}.html`);
+          if (!resp.ok) throw new Error(resp.statusText);
+          const html = await resp.text();
+          container.insertAdjacentHTML('beforeend', html);
+        } catch (err) {
+          console.warn('Could not load section', s, err);
+        }
+      }
+      // anchor navigation: smooth scroll
+      document.querySelectorAll('nav a[data-section]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          const id = a.getAttribute('data-section');
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({behavior:'smooth'});
+        });
+      });
+    })();
+  </script>
+
+</div>
+</body>
+</html>
