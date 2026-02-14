@@ -1,3 +1,3 @@
 #### Solution for the coding challenge
 
-[![Solution for the coding challenge](doc/solution-icon.svg "Solution for the coding challenge") Documentation](doc/index.html)
+[![Solution for the coding challenge](docs/solution-icon.svg "Solution for the coding challenge") Documentation](docs/index.html)
