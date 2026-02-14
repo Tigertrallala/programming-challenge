@@ -1,0 +1,29 @@
+<section id="results">
+  <h2>Solution Data — Results</h2>
+
+  <p>This section documents the canonical outputs produced by the challenge logic when run against the provided resource files.</p>
+
+  <h3>Expected results (using shipped resources)</h3>
+  <ul>
+    <li><b>Weather challenge:</b> Day with the smallest temperature spread — <b>14</b>.</li>
+    <li><b>Countries challenge:</b> Country with highest population density — <b>Malta</b>.</li>
+  </ul>
+
+  <h3>Console output example</h3>
+  <pre><code>Weather: day with smallest temperature spread = 14
+Countries: country with highest population density = Malta
+</code></pre>
+
+  <h3>Programmatic result shape</h3>
+  <p>The library/logic methods return simple types suitable for assertions or further processing:</p>
+  <ul>
+    <li><b>WeatherLogic.findDayWithSmallestSpread</b> &rarr; <code>int</code> (day number, or <code>-1</code> when no valid rows)</li>
+    <li><b>CountryLogic.findCountryWithHighestDensity</b> &rarr; <code>String</code> (country name, or <code>"n/a"</code> when no valid rows)</li>
+  </ul>
+
+  <h3>Notes</h3>
+  <ul>
+    <li>Invalid or malformed rows are skipped; logic functions return sentinel values for empty inputs so they are easy to test.</li>
+    <li>If you call the main application with custom resource paths, the same return types and console output format apply.</li>
+  </ul>
+</section>

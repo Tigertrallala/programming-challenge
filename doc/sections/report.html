@@ -1,8 +1,18 @@
 <section id="report">
   <h2>Test Reports</h2>
+  <p>Run the included wrapper to execute tests and produce a self-contained HTML report:</p>
+  <pre><code>.
+runTests.cmd
+</code></pre>
+  <p>Outputs (in <code>reports/</code>):</p>
   <ul>
-    <li>HTML test reports are saved in <code>reports/</code>.</li>
-    <li>Latest: <code>reports/test-report-latest.html</code></li>
-    <li>Open in any browser for a detailed view of all test results.</li>
+    <li><code>test-report_YYYY-MM-DD_HH-mm-ss.html</code> — timestamped, self-contained report.</li>
+    <li><code>test-report-latest.html</code> — copy of the latest report.</li>
   </ul>
+  <p>Quick access: <a href="../reports/test-report-latest.html">Open latest test report</a></p>
+  <h4>Preview</h4>
+  <div style="border:1px solid #e0e0e0; border-radius:6px; overflow:hidden; margin:0.5em 0;">
+    <iframe src="../reports/test-report-latest.html" style="width:100%; height:560px; border:0;" title="Latest test report preview">Your browser does not support iframes — open the <a href="../reports/test-report-latest.html">latest report</a>.</iframe>
+  </div>
+
 </section>
