@@ -49,14 +49,17 @@ public final class CountryLogic {
                 population = NumberParsing.parseNumber(popValue);
                 area = NumberParsing.parseNumber(areaValue);
             } catch (NumberFormatException ex) {
-                LOGGER.warning("Row " + index + " invalid number: " + ex.getMessage());
+                final int rowNum = index;
+                LOGGER.warning(() -> "Row " + rowNum + " invalid number: " + ex.getMessage());
                 skipped++;
                 continue;
             }
 
             // Skip invalid area
             if (area <= 0.0) {
-                LOGGER.warning("Row " + index + " non-positive area: " + area);
+                final int rowNum = index;
+                final double areaVal = area;
+                LOGGER.warning(() -> "Row " + rowNum + " non-positive area: " + areaVal);
                 skipped++;
                 continue;
             }
@@ -69,7 +72,9 @@ public final class CountryLogic {
             }
         }
 
-        LOGGER.info("Countries: processed " + rows.size() + ", skipped " + skipped);
+        final int totalRows = rows.size();
+        final int skippedRows = skipped;
+        LOGGER.info(() -> "Countries: processed " + totalRows + ", skipped " + skippedRows);
         return bestName;
     }
 
@@ -77,7 +82,8 @@ public final class CountryLogic {
     private static String requireValue(Map<String, String> row, String key, int rowIndex) {
         String value = row.get(key);
         if (isMissing(value)) {
-            LOGGER.warning("Row " + rowIndex + " missing: " + key);
+            final int rowNum = rowIndex;
+            LOGGER.warning(() -> "Row " + rowNum + " missing: " + key);
             return null;
         }
         return value;

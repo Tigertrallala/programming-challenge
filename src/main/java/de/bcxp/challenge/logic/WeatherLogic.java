@@ -50,7 +50,8 @@ public final class WeatherLogic {
                 maxTemp = NumberParsing.parseInt(maxValue);
                 minTemp = NumberParsing.parseInt(minValue);
             } catch (NumberFormatException ex) {
-                LOGGER.warning("Row " + index + " invalid number: " + ex.getMessage());
+                final int rowNum = index;
+                LOGGER.warning(() -> "Row " + rowNum + " invalid number: " + ex.getMessage());
                 skipped++;
                 continue;
             }
@@ -63,7 +64,9 @@ public final class WeatherLogic {
             }
         }
 
-        LOGGER.info("Weather: processed " + rows.size() + ", skipped " + skipped);
+        final int totalRows = rows.size();
+        final int skippedRows = skipped;
+        LOGGER.info(() -> "Weather: processed " + totalRows + ", skipped " + skippedRows);
         return bestDay;
     }
 
@@ -71,7 +74,7 @@ public final class WeatherLogic {
     private static String requireValue(Map<String, String> row, String key, int rowIndex) {
         String value = row.get(key);
         if (isMissing(value)) {
-            LOGGER.warning("Row " + rowIndex + " missing: " + key);
+            LOGGER.warning(() -> "Row " + rowIndex + " missing: " + key);
             return null;
         }
         return value;
