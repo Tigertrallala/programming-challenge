@@ -1,0 +1,52 @@
+<section id="detailed">
+  <h2>Detailed Solution & Code Snippets</h2>
+  <h3>Approach</h3>
+  <p>The program is split into three concerns:</p>
+  <ul>
+    <li><b>IO</b>: Read CSV/JSON resources into List&lt;Map&lt;String,String&gt;&gt; via <code>TabularReader</code>.</li>
+    <li><b>Logic</b>: Stateless classes implement the data computations (<code>WeatherLogic</code>, <code>CountryLogic</code>).</li>
+    <li><b>Util</b>: Small helpers for parsing, logging and user feedback.</li>
+  </ul>
+
+  <h3>Key Code Snippets</h3>
+  <p><b>Main orchestration</b> — the application reads resources and invokes the logic classes:</p>
+  <pre><code>public static void main(String... args) {
+  String weatherResource = args.length > 0 ? args[0] : "de/bcxp/challenge/weather.csv";
+  String countriesResource = args.length > 1 ? args[1] : "de/bcxp/challenge/countries.csv";
+
+  List&lt;Map&lt;String,String&gt;&gt; weatherRows = TabularReader.read(weatherResource, ',', "Day", "MxT", "MnT");
+  int dayWithSmallestTempSpread = WeatherLogic.findDayWithSmallestSpread(weatherRows);
+
+  List&lt;Map&lt;String,String&gt;&gt; countryRows = TabularReader.read(countriesResource, null, "Name", "Population", "Area (km²)");
+  String countryWithHighestPopulationDensity = CountryLogic.findCountryWithHighestDensity(countryRows);
+}
+  </code></pre>
+
+  <p><b>Weather logic</b> — computes smallest temperature spread, skipping invalid rows:</p>
+  <pre><code>public static int findDayWithSmallestSpread(List&lt;Map&lt;String,String&gt;&gt; rows) {
+  int bestDay = -1; int bestSpread = Integer.MAX_VALUE;
+  for (Map&lt;String,String&gt; row : rows) {
+    int spread = NumberParsing.parseInt(row.get("MxT")) - NumberParsing.parseInt(row.get("MnT"));
+    if (spread &lt; bestSpread) { bestSpread = spread; bestDay = NumberParsing.parseInt(row.get("Day")); }
+  }
+  return bestDay;
+}
+  </code></pre>
+
+  <p><b>Country logic</b> — computes population density and tracks the maximum:</p>
+  <pre><code>public static String findCountryWithHighestDensity(List&lt;Map&lt;String,String&gt;&gt; rows) {
+  String bestName = "n/a"; double bestDensity = -1.0;
+  for (Map&lt;String,String&gt; row : rows) {
+    double population = NumberParsing.parseNumber(row.get("Population"));
+    double area = NumberParsing.parseNumber(row.get("Area (km²)"));
+    if (area &gt; 0.0) {
+      double density = population / area;
+      if (density &gt; bestDensity) { bestDensity = density; bestName = row.get("Name"); }
+    }
+  }
+  return bestName;
+}
+  </code></pre>
+
+  <p>The full source files are in <code>src/main/java/de/bcxp/challenge/</code>. The snippets above are the core of the solution: small, testable methods that operate on plain data structures (List/Map).</p>
+</section>

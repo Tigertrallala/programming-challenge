@@ -1,0 +1,56 @@
+[
+	{
+		"Day": "1",
+		"MxT": "88",
+		"MnT": "59",
+		"Note": "Valid row"
+	},
+	{
+		"Day": "2",
+		"MxT": "",
+		"MnT": "63",
+		"Note": "Missing MxT"
+	},
+	{
+		"Day": "3",
+		"MxT": "85",
+		"MnT": "",
+		"Note": "Missing MnT"
+	},
+	{
+		"Day": "",
+		"MxT": "90",
+		"MnT": "60",
+		"Note": "Missing Day"
+	},
+	{
+		"Day": "4",
+		"MxT": "notanumber",
+		"MnT": "55",
+		"Note": "Invalid MxT"
+	},
+	{
+		"Day": "5",
+		"MxT": "80",
+		"MnT": "notanumber",
+		"Note": "Invalid MnT"
+	},
+	{
+		"Day": "6",
+		"MxT": "",
+		"MnT": "",
+		"Note": "All missing"
+	},
+	{
+		"Day": "7",
+		"MxT": "88",
+		"MnT": "59",
+		"Note": "Unicode: üöäß"
+	},
+	{
+		"Day": "8",
+		"MxT": "88",
+		"MnT": "59",
+		"Note": "Special chars: !@#$%"
+	}
+]

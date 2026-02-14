@@ -1,0 +1,214 @@
+/* Surefire Report Custom Styles */
+
+:root {
+  --primary-color: #2563eb;
+  --success-color: #16a34a;
+  --error-color: #dc2626;
+  --warning-color: #d97706;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 20px;
+}
+
+#contentBox {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-color);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+th:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+tr:hover {
+  background-color: #f1f5f9;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+tr:nth-child(even):hover {
+  background-color: #f1f5f9;
+}
+
+/* Summary section styling */
+.section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Success/Failure indicators */
+td:contains("0") {
+  color: var(--success-color);
+}
+
+.success,
+[class*="success"],
+td.success {
+  color: var(--success-color) !important;
+  font-weight: 600;
+}
+
+.error,
+[class*="error"],
+td.error,
+.failure {
+  color: var(--error-color) !important;
+  font-weight: 600;
+}
+
+/* Test result badges */
+td:last-child {
+  font-weight: 500;
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Summary stats - make them stand out */
+table.bodyTable tr:first-child td {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Package/Class names */
+td:first-child {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+/* Numbers - right align */
+td:nth-child(n + 2) {
+  text-align: center;
+}
+
+th:nth-child(n + 2) {
+  text-align: center;
+}
+
+/* Percentage column */
+td:last-child,
+th:last-child {
+  text-align: right;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  #contentBox {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+  }
+
+  #contentBox {
+    box-shadow: none;
+  }
+}

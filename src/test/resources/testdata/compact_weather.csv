@@ -1,0 +1,10 @@
+Day,MxT,MnT,Note
+1,88,59,Valid row
+2, ,63,Missing MxT
+3,85,,Missing MnT
+,90,60,Missing Day
+4,notanumber,55,Invalid MxT
+5,80,notanumber,Invalid MnT
+6, , ,All missing
+7,88,59,Unicode: üöäß
+8,88,59,Special chars: !@#$%

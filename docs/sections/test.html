@@ -1,0 +1,28 @@
+<section id="test">
+  <h2>Testing</h2>
+  <p>Unit and integration tests (JUnit 5) in <code>src/test/java</code>:</p>
+  <ul>
+    <li><b>CompactCsvJsonTest</b>
+      <ul>
+        <li><b>testCompactWeatherCsvCases</b> — validates CSV parsing for compact/edge cases (9 rows, missing fields, invalid numbers, unicode & special chars).</li>
+        <li><b>testCompactWeatherJsonCases</b> — same validations for the JSON variant.</li>
+      </ul>
+    </li>
+    <li><b>LogicIntegrationTest</b>
+      <ul>
+        <li><b>testWeatherLogicWithOriginalResource</b> — integration test using <code>weather.csv</code>, expects day <b>14</b>.</li>
+        <li><b>testCountryLogicWithOriginalResource</b> — integration test using <code>countries.csv</code>, expects <b>Malta</b>.</li>
+        <li><b>testWeatherLogicWithCompactCsv</b> — weather logic on compact CSV, expects day <b>1</b>.</li>
+        <li><b>testWeatherLogicWithCompactJson</b> — weather logic on compact JSON, expects day <b>1</b>.</li>
+        <li><b>testWeatherLogicWithEmptyRows</b> — empty input returns <b>-1</b> (no valid day).</li>
+        <li><b>testCountryLogicWithMinimalData</b> — minimal valid data returns the only country ("Testland").</li>
+        <li><b>testCountryLogicWithEmptyRows</b> — empty input returns <b>n/a</b>.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>Run tests and generate HTML reports with the included helper:</p>
+  <pre><code>.
+runTests.cmd
+</code></pre>
+  <p>This runs <code>./mvnw clean test site</code> and executes <code>save-report.ps1</code> to produce self-contained HTML files under <code>reports/</code>.</p>
+</section>
