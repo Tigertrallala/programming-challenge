@@ -32,3 +32,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Test Reports ###
+# Ignore timestamped reports, only keep latest
+reports/test-report_*.html
