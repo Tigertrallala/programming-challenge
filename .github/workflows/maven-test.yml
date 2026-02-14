@@ -2,9 +2,9 @@ name: CI - Maven Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
-          cache: 'maven'
+          java-version: "17"
+          cache: "maven"
 
       - name: Run Maven tests and generate site
         run: ./mvnw -B clean test site
