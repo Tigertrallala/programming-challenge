@@ -2,7 +2,6 @@ package de.bcxp.challenge.io;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UncheckedIOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +48,7 @@ public final class JsonReader implements TabularReader {
                             LinkedHashMap::new))) // Preserve insertion order
                     .collect(Collectors.toList());
         } catch (IOException ex) {
-            throw new UncheckedIOException("Failed to read: " + resourcePath, ex);
+            throw new IllegalArgumentException("Failed to parse JSON: " + resourcePath, ex);
         }
     }
 }

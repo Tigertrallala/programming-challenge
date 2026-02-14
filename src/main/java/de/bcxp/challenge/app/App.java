@@ -58,13 +58,16 @@ public final class App {
         String weatherResource = args.length > 0 ? args[0] : "de/bcxp/challenge/weather.csv";
         String countriesResource = args.length > 1 ? args[1] : "de/bcxp/challenge/countries.csv";
 
+        // Allow .json or .csv for both inputs
+        boolean weatherIsJson = weatherResource.toLowerCase().endsWith(".json");
+        boolean countriesIsJson = countriesResource.toLowerCase().endsWith(".json");
+
         // Challenge 1: Find day with smallest temperature spread
         ConsoleLogger.printSection("CHALLENGE 1: Weather Data");
         List<Map<String, String>> weatherRows = TabularReader.read(
-                weatherResource, ',', "Day", "MxT", "MnT");
-        // JSON alternative (delimiter is ignored for JSON):
-        // List<Map<String, String>> weatherRows = TabularReader.read(
-        //         "de/bcxp/challenge/weather.json", null, "Day", "MxT", "MnT");
+                weatherResource,
+                weatherIsJson ? null : ',',
+                "Day", "MxT", "MnT");
         int dayWithSmallestTempSpread = WeatherLogic.findDayWithSmallestSpread(weatherRows);
         ConsoleLogger.printResult("Result: Day with smallest temperature spread: %s%n", dayWithSmallestTempSpread);
 
@@ -72,10 +75,9 @@ public final class App {
         ConsoleLogger.printBlankLine();
         ConsoleLogger.printSection("CHALLENGE 2: Country Population Density");
         List<Map<String, String>> countryRows = TabularReader.read(
-                countriesResource, null, "Name", "Population", "Area (km²)");
-        // JSON alternative:
-        // List<Map<String, String>> countryRows = TabularReader.read(
-        //         "de/bcxp/challenge/countries.json", null, "Name", "Population", "Area (km²)");
+                countriesResource,
+                countriesIsJson ? null : null,
+                "Name", "Population", "Area (km²)");
         String countryWithHighestPopulationDensity = CountryLogic.findCountryWithHighestDensity(countryRows);
         ConsoleLogger.printResult("Result: Country with highest population density: %s%n", countryWithHighestPopulationDensity);
 
